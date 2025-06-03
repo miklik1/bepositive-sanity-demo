@@ -9,6 +9,9 @@ import { token } from "@/sanity/lib/token";
  * Learn more: https://github.com/sanity-io/next-sanity?tab=readme-ov-file#5-integrating-with-sanity-presentation-tool--visual-editing
  */
 
+// Debug: Log if token exists (don't log the actual token for security)
+console.log("Draft mode token exists:", !!token);
+
 export const { GET } = defineEnableDraftMode({
   client: client.withConfig({ token }),
 });

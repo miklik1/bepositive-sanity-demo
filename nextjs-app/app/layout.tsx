@@ -4,9 +4,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
-import { toPlainText } from "next-sanity";
+import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
-import dynamic from "next/dynamic";
 
 import DraftModeToast from "@/app/components/DraftModeToast";
 import Footer from "@/app/components/Footer";
@@ -16,14 +15,6 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { handleError } from "./client-utils";
-
-// Load VisualEditing only on client-side to prevent hydration issues
-const VisualEditing = dynamic(
-  () => import("next-sanity").then((mod) => ({ default: mod.VisualEditing })),
-  {
-    ssr: false,
-  }
-);
 
 /**
  * Generate metadata for the page.
